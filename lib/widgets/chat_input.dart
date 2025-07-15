@@ -44,9 +44,9 @@ class _ChatInputState extends State<ChatInput> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Options Panel - Always visible
+          // Options Panel - Always visible (Compact)
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
               border: Border(
@@ -64,7 +64,7 @@ class _ChatInputState extends State<ChatInput> {
                   selectedAspectRatio: widget.selectedAspectRatio,
                   onAspectRatioChanged: widget.onAspectRatioChanged,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
                 // Style Selector
                 StyleSelector(
                   styles: ImageOptions.styles,
@@ -77,7 +77,7 @@ class _ChatInputState extends State<ChatInput> {
           
           // Input Area
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
             child: SafeArea(
               child: Row(
                 children: [
