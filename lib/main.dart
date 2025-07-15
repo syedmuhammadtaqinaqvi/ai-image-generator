@@ -44,7 +44,6 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final List<ChatMessage> _messages = [];
-  bool _isLoading = false;
   
   // Image generation options
   ImageAspectRatio _selectedAspectRatio = ImageOptions.aspectRatios[0];
@@ -88,7 +87,6 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
     
     setState(() {
       _messages.add(userMessage);
-      _isLoading = true;
     });
     
     _messageController.clear();
@@ -133,7 +131,6 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
       setState(() {
         _messages.removeLast(); // Remove loading message
         _messages.add(successMessage);
-        _isLoading = false;
       });
       
     } catch (error) {
@@ -152,7 +149,6 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
         setState(() {
           _messages.removeLast(); // Remove loading message
           _messages.add(successMessage);
-          _isLoading = false;
         });
         
       } catch (backupError) {
@@ -168,7 +164,6 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
         setState(() {
           _messages.removeLast(); // Remove loading message
           _messages.add(errorMessage);
-          _isLoading = false;
         });
       }
     }
@@ -223,7 +218,7 @@ class _ChatImageGeneratorPageState extends State<ChatImageGeneratorPage> {
           ChatInput(
             controller: _messageController,
             onSend: _handleSendMessage,
-            isLoading: _isLoading,
+            isLoading: false, // Always allow input for repeated generation
             selectedAspectRatio: _selectedAspectRatio,
             selectedStyle: _selectedStyle,
             onAspectRatioChanged: (aspectRatio) {
